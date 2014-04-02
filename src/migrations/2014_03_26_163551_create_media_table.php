@@ -19,6 +19,13 @@ class CreateMediaTable extends Migration {
 			$table->string('type');
 			$table->timestamps();
 		});
+
+		Schema::create('mediables', function(Blueprint $table)
+		{
+			$table->morphs('mediable');
+			$table->integer('media_id');
+			$table->primary(array('media_id', 'mediable_id'));
+		});
 	}
 
 	/**
@@ -29,6 +36,7 @@ class CreateMediaTable extends Migration {
 	public function down()
 	{
 		Schema::drop('media');
+		Schema::drop('mediables');
 	}
 
 }

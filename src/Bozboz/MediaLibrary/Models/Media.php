@@ -88,4 +88,15 @@ class Media extends Base
 			'mediable'
 		);
 	}
+
+	/**
+	 * Accessor method to retrieve all media on a model
+	 *
+	 * @param $model Eloquent
+	 * @return Illuminate\Database\Eloquent\Relations\MorphToMany
+	 */
+	public static function forModel(Eloquent $model)
+	{
+		return $model->morphToMany(get_class(), 'mediable');
+	}
 }

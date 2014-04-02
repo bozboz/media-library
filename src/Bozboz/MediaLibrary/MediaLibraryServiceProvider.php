@@ -1,6 +1,7 @@
 <?php namespace Bozboz\MediaLibrary;
 
 use Illuminate\Support\ServiceProvider;
+use Event;
 
 class MediaLibraryServiceProvider extends ServiceProvider {
 
@@ -29,6 +30,7 @@ class MediaLibraryServiceProvider extends ServiceProvider {
 	public function register()
 	{
 		require __DIR__ . '/../../routes.php';
+		Event::subscribe(new Subscribers\MediaEventHandler);
 	}
 
 	/**

@@ -2,8 +2,8 @@
 
 return array(
 	'models' => array(
-		'Page' => array(
-			'namespace' => 'Bozboz\Admin\Models\Page',
+		'Bozboz\Admin\Models\Page' => array(
+			'alias' => 'pages',
 			'sizes' => array(
 				'thumb' => array(
 					'width' => 1337,

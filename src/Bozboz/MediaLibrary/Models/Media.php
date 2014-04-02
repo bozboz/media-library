@@ -69,7 +69,7 @@ class Media extends Base
 	private function relationshipExists($relation)
 	{
 		$mediaModelsConfig = Config::get('media-library::models');
-		return in_array(str_singular($relation), array_map('strtolower', array_keys($mediaModelsConfig)));
+		return in_array($relation, array_fetch($mediaModelsConfig, 'alias'));
 	}
 
 	/**
@@ -80,13 +80,16 @@ class Media extends Base
 	 */
 	private function defineRelation($relation)
 	{
-		$modelName = ucfirst(str_singular($relation));
 		$mediaModelsConfig = Config::get('media-library::models');
 
-		return $this->dynamicRelations[$relation] = $this->morphedByMany(
-			$mediaModelsConfig[$modelName]['namespace'],
-			'mediable'
-		);
+		foreach($mediaModelsConfig as $fullModelName => $rel) {
+			if ($rel['alias'] === $relation) {
+				return $this->dynamicRelations[$relation] = $this->morphedByMany(
+					$fullModelName,
+					'mediable'
+				);
+			}
+		}
 	}
 
 	/**

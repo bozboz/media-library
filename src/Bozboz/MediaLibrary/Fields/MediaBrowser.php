@@ -6,37 +6,52 @@ use Eloquent, Form;
 
 class MediaBrowser extends Field
 {
-	private $factory;
+	private $modelFactory;
+	private $mediaFactory;
 
-	public function __construct(Eloquent $factory, $params = array())
+	public function __construct(Eloquent $modelFactory, Media $mediaFactory, $params = array())
 	{
-		$this->factory = $factory;
+		$this->modelFactory = $modelFactory;
+		$this->mediaFactory = $mediaFactory;
 		parent::__construct($params);
 	}
 
 	public function getInput($params)
 	{
 		$currentValues = $this->getCurrentValues();
-		$html = '<ul>';
-		foreach (Media::all() as $i => $media) {
-			$id = $media->id;
-			$name = $this->get('name');
-			$image = sprintf('<img src="/images/%s" width="150">', $media->filename);
-			$selected = in_array($media->id, $currentValues);
-			$input = Form::checkbox($name . '[]', $media->id, $selected, array('id' => 'media-' . $media->id));
-			$html .= "<li data-id='$id'><label for='media-{$media->id}'>$image</label>{$input}</li>";
-		}
-		
-		$html .= '</ul>';
+		$items = array();
 
-		return $html;
+		foreach ($this->mediaFactory->all() as $i => $media) {
+			$items[] = sprintf($this->getListItemHTML(),
+				$media->id,
+				$media->id,
+				$media->filename,
+				Form::checkbox(
+					$this->get('name') . '[]',
+					$media->id,
+					in_array($media->id, $currentValues),
+					array('id' => 'media-' . $media->id)
+				)
+			);
+		}
+
+		return '<ul>' . implode(PHP_EOL, $items) . '</ul>';
+	}
+
+	public function getListItemHTML()
+	{
+		return '
+		<li data-id="%d">
+			<label for="media-%d"><img src="/images/%s" width="150"></label>
+			%s
+		</li>';
 	}
 
 	public function getCurrentValues()
 	{
 		$id = Form::getValueAttribute('id');
-		$instance = $this->factory->find($id);
-		$current = Media::forModel($instance)->get();
+		$instance = $this->modelFactory->find($id);
+		$current = $this->mediaFactory->forModel($instance)->get();
 		return array_pluck($current, 'id');
 	}
 }

@@ -15,7 +15,7 @@ class MediaEventHandler
 	public function onFieldsBuilt($fieldsObj, $model)
 	{
 		if ($this->isMediableModel($model)) {
-			$fieldsObj[] = new MediaBrowser($model, array('name' => 'media'));
+			$fieldsObj[] = new MediaBrowser($model, new Media, array('name' => 'media'));
 		}
 	}
 

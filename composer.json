@@ -1,0 +1,25 @@
+{
+    "name": "bozboz/media-library",
+    "description": "",
+    "authors": [
+        {
+            "name": "Sam King",
+            "email": "sdking02@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.1.*",
+        "thapp/jitimage": "dev-master",
+        "bozboz/admin": "~0.1.0@dev"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0": {
+            "Bozboz\\MediaLibrary\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}

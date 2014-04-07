@@ -19,3 +19,5 @@ This package provides the ability to relate a piece of Media to any model via a 
 ```
 
 The value of **alias** is used when accessing the related Page models on the Media instance (e.g. a Media instance has many Pages which can be accessed via $media->pages).
+
+To get all Media instances for a given Page model, pass the Page model to Media::forModel(). This will return an instancce of Illuminate\Database\Eloquent\Relations\MorphToMany which contains the results. Actual model instances can be accessed by calling get() on the return value.

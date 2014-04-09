@@ -2,6 +2,7 @@
 
 use Eloquent, Input, Config;
 use Bozboz\MediaLibrary\Validators\MediaValidator;
+use Bozboz\MediaLibrary\Exceptions\InvalidConfigurationException;
 use Bozboz\Admin\Models\Base;
 
 class Media extends Base
@@ -101,5 +102,34 @@ class Media extends Base
 	public static function forModel(Eloquent $model)
 	{
 		return $model->morphToMany(get_class(), 'mediable');
+	}
+
+	/**
+	 * Parse the configuration file detailing "mediable" models and their
+	 * asssociated image dimensions.
+	 *
+	 * @throws InvalidConfigurationException
+	 * @return array Mapping suitable for jitimage's "recipes" configuration value
+	 */
+	public static function getSizes()
+	{
+		$sizes = [];
+		foreach (Config::get('media.models') as $namespace => $modelConfig) {
+			if (!isset($modelConfig['alias'])) {
+				throw new InvalidConfigurationException(
+					"The media configuration for $namespace does not have an alias."
+				);
+			} else {
+				$alias = $modelConfig['alias'];
+			}
+
+			foreach ($modelConfig['sizes'] as $size => $config) {
+				$key = $alias . '/' . $size;
+				$value = '1/' . $config['width'] . '/' . $config['height'];
+				$sizes[$key] = $value;
+			}
+		}
+
+		return $sizes;
 	}
 }

@@ -21,5 +21,11 @@
             "Bozboz\\MediaLibrary\\": "src/"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://www.laravel-packages.zobzob.co.uk"
+        }
+    ]
 }

@@ -11,7 +11,7 @@
         "php": ">=5.4.0",
         "illuminate/support": "4.1.*",
         "thapp/jitimage": "dev-master",
-        "bozboz/admin": "~0.1.0@dev"
+        "bozboz/admin": "0.1.*@dev"
     },
     "autoload": {
         "classmap": [

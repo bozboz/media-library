@@ -19,7 +19,7 @@ class MediaEventHandler
 		}
 	}
 
-	public function onEloquentSaving($model)
+	public function onEloquentSaved($model)
 	{
 		if ($this->isMediableModel($model)) {
 			$input = Input::get('media', array());
@@ -43,7 +43,7 @@ class MediaEventHandler
 	{
 		$class = get_class($this);
 		$events->listen('admin.fields.built', $class . '@onFieldsBuilt');
-		$events->listen('eloquent.saving: *', $class . '@onEloquentSaving');
+		$events->listen('eloquent.saved: *', $class . '@onEloquentSaved');
 	}
 
 }

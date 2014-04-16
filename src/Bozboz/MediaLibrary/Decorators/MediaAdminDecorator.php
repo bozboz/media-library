@@ -30,13 +30,13 @@ class MediaAdminDecorator extends ModelAdminDecorator
 	public function getFields()
 	{
 		return array(
-			'type' => array(
-				'type' => 'SelectField',
-				'options' => $this->config->get('media-library::allowed_media_types', array('Image', 'PDF'))
+			new \Bozboz\Admin\Fields\SelectField(
+				array(
+					'name' => 'type',
+					'options' => $this->config->get('media-library::allowed_media_types')
+				)
 			),
-			'filename' => array(
-				'type' => 'FileField'
-			)
+			new \Bozboz\Admin\Fields\FileField(array('name' => 'filename'))
 		);
 	}
 }

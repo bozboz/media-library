@@ -47,11 +47,21 @@ class MediaBrowser extends Field
 		</li>';
 	}
 
+	/**
+	 * Get the IDs of Media this model is related to.
+	 *
+	 * @return array Media IDs related to the model being created/edited
+	 */
 	public function getCurrentValues()
 	{
 		$id = Form::getValueAttribute('id');
 		$instance = $this->modelFactory->find($id);
-		$current = $this->mediaFactory->forModel($instance)->get();
-		return array_pluck($current, 'id');
+
+		if (empty($instance)) { //new model
+			return array();
+		} else {
+			$current = $this->mediaFactory->forModel($instance)->get();
+			return array_pluck($current, 'id');
+		}
 	}
 }

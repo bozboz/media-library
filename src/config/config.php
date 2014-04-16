@@ -1,15 +1,16 @@
 <?php
 
-return array(
-	'models' => array(
-		'Bozboz\Admin\Models\Page' => array(
+return [
+	'allowed_media_types' => ['Image', 'PDF'],
+	'models' => [
+		'Bozboz\Admin\Models\Page' => [
 			'alias' => 'pages',
-			'sizes' => array(
-				'thumb' => array(
+			'sizes' => [
+				'thumb' => [
 					'width' => 1337,
 					'height' => 1337
-				)
-			)
-		)
-	)
-);
+				]
+			]
+		]
+	]
+];

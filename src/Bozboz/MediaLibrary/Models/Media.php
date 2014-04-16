@@ -114,7 +114,7 @@ class Media extends Base
 	public static function getSizes()
 	{
 		$sizes = [];
-		foreach (Config::get('media.models') as $namespace => $modelConfig) {
+		foreach (Config::get('media-library::models') as $namespace => $modelConfig) {
 			if (!isset($modelConfig['alias'])) {
 				throw new InvalidConfigurationException(
 					"The media configuration for $namespace does not have an alias."

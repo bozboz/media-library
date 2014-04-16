@@ -50,7 +50,7 @@ class MediaTest extends \Bozboz\Admin\Tests\TestCase
 	public function testGetSizesSuccess()
 	{
 		$configMock = Mockery::mock('ConfigMock');
-		$configMock->shouldReceive('get')->with('media.models')->once()->andReturn([
+		$configMock->shouldReceive('get')->with('media-library::models')->once()->andReturn([
 			'Bozboz\Admin\Models\Page' => [
 				'alias' => 'pages',
 				'sizes' => [
@@ -91,7 +91,7 @@ class MediaTest extends \Bozboz\Admin\Tests\TestCase
 	public function testGetSizesAliasException()
 	{
 		$configMock = Mockery::mock('ConfigMock');
-		$configMock->shouldReceive('get')->with('media.models')->once()->andReturn([
+		$configMock->shouldReceive('get')->with('media-library::models')->once()->andReturn([
 			'foo' => []
 		]);
 		Config::swap($configMock);

@@ -27,5 +27,10 @@
             "type": "composer",
             "url": "http://www.laravel-packages.zobzob.co.uk"
         }
-    ]
+    ],
+	"extra": {
+        "branch-alias": {
+            "dev-develop": "0.1.x-dev"
+        }
+    }	
 }

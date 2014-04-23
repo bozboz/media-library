@@ -15,7 +15,7 @@ class ResizeAndCrop extends AbstractFilter
 
 	public function recipe()
 	{
-		return sprintf('1/%d/%d/%d',
+		return sprintf('2/%d/%d/%d',
 			$this->width,
 			$this->height,
 			$this->gravity

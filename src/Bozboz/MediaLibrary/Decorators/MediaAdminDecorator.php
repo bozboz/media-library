@@ -3,6 +3,8 @@
 use Bozboz\Admin\Decorators\ModelAdminDecorator;
 use Bozboz\MediaLibrary\Models\Media;
 use Illuminate\Config\Repository;
+use Bozboz\Admin\Fields\SelectField;
+use Bozboz\Admin\Fields\FileField;
 
 class MediaAdminDecorator extends ModelAdminDecorator
 {
@@ -30,13 +32,8 @@ class MediaAdminDecorator extends ModelAdminDecorator
 	public function getFields()
 	{
 		return array(
-			new \Bozboz\Admin\Fields\SelectField(
-				array(
-					'name' => 'type',
-					'options' => $this->config->get('media-library::allowed_media_types')
-				)
-			),
-			new \Bozboz\Admin\Fields\FileField(array('name' => 'filename'))
+			new SelectField(array('name' => 'type', 'options' => $this->config->get('media-library::allowed_media_types', array('Image', 'PDF')))),
+			new FileField(array('name' => 'filename'))
 		);
 	}
 }

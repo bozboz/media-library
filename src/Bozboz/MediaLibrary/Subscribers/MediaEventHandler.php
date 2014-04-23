@@ -2,6 +2,7 @@
 
 use Bozboz\MediaLibrary\Fields\MediaBrowser;
 use Bozboz\MediaLibrary\Models\Media;
+use Bozboz\Admin\Components\Menu;
 use Config, Input;
 
 class MediaEventHandler
@@ -39,11 +40,17 @@ class MediaEventHandler
 		}
 	}
 
+	public function onRenderMenu(Menu $menu)
+	{
+		$menu['Media Library'] = route('admin.media.index');
+	}
+
 	public function subscribe($events)
 	{
 		$class = get_class($this);
 		$events->listen('admin.fields.built', $class . '@onFieldsBuilt');
 		$events->listen('eloquent.saved: *', $class . '@onEloquentSaved');
+		$events->listen('admin.renderMenu', $class . '@onRenderMenu');
 	}
 
 }

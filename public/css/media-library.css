@@ -1,0 +1,11 @@
+.masonry-item {
+	padding: 10px;
+	border: 1px solid #ddd;
+	margin: 0 15px 15px 0;
+	width: 172px;
+	background: #fff;
+}
+
+.icons {
+	padding-top: 15px;
+}

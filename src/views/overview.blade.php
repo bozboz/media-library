@@ -9,18 +9,18 @@
 	@include('admin::partials.new')
 	<h1>{{ $modelName }}</h1>
 	<ul class="js-masonry secret-list" data-masonry-options='{ "columnWidth": 187, "itemSelector": ".masonry-item" }'>
-	@foreach ($instances as $i => $model)
+	@foreach ($report->getRows() as $row)
 		<li class="masonry-item">
-			<a href="{{ URL::action($controller . '@edit', array($model->id)) }}">
-				{{ $columns[$i]['image'] }}
+			<a href="{{ URL::action($controller . '@edit', array($row->getId())) }}">
+				{{ $row->getColumns()['image'] }}
 			</a>
 			<div class="icons">
-				<a href="{{ URL::action($controller . '@edit', array($model->id)) }}" class="btn btn-info btn-sm pull-right">
+				<a href="{{ URL::action($controller . '@edit', array($row->getId())) }}" class="btn btn-info btn-sm pull-right">
 					<i class="fa fa-pencil"></i>
 					Edit
 				</a>
 
-				{{ Form::model($model, array('class' => 'inline-form', 'action' => array($controller . '@destroy', $model->id), 'method' => 'DELETE')) }}
+				{{ Form::model($row->getModel(), array('class' => 'inline-form', 'action' => array($controller . '@destroy', $row->getId()), 'method' => 'DELETE')) }}
 					<button class="btn btn-danger btn-sm" type="submit"><i class="fa fa-minus-square"></i> Delete</button>
 				{{ Form::close() }}
 			</div>

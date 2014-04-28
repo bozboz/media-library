@@ -25,7 +25,7 @@ class MediaBrowser extends Field
 			$items[] = sprintf($this->getListItemHTML(),
 				$media->id,
 				$media->id,
-				$media->filename,
+				$media->getFilename('thumb'),
 				Form::checkbox(
 					$this->get('name') . '[]',
 					$media->id,
@@ -42,7 +42,7 @@ class MediaBrowser extends Field
 	{
 		return '
 		<li data-id="%d">
-			<label for="media-%d"><img src="/images/%s" width="150"></label>
+			<label for="media-%d"><img src="%s" width="150"></label>
 			%s
 		</li>';
 	}

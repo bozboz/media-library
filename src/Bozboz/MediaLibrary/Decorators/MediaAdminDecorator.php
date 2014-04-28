@@ -20,7 +20,7 @@ class MediaAdminDecorator extends ModelAdminDecorator
 	{
 		return array(
 			'id' => $instance->id,
-			'image' => sprintf('<img src="/images/%s" width="150">', $instance->filename)
+			'image' => sprintf('<img src="%s" width="150">', $instance->getFilename('thumb'))
 		);
 	}
 
@@ -32,7 +32,10 @@ class MediaAdminDecorator extends ModelAdminDecorator
 	public function getFields()
 	{
 		return array(
-			new SelectField(array('name' => 'type', 'options' => $this->config->get('media-library::allowed_media_types', array('Image', 'PDF')))),
+			new SelectField(array('name' => 'type', 'options' => $this->config->get('media-library::allowed_media_types', array(
+				'image' => 'Image',
+				'pdf' => 'PDF'
+			)))),
 			new FileField(array('name' => 'filename'))
 		);
 	}

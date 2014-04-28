@@ -20,7 +20,7 @@ class Media extends Base
 	{
 		if (Input::hasFile('filename')) {
 			$file = Input::file('filename');
-			$destinationPath = public_path() . '/images/';
+			$destinationPath = public_path() . '/media/' . strtolower($this->type) . '/';
 			$uploadSuccess = $file->move($destinationPath, $file->getClientOriginalName());
 			$this->attributes['filename'] = $file->getClientOriginalName();
 		}
@@ -131,5 +131,15 @@ class Media extends Base
 		}
 
 		return $sizes;
+	}
+
+	public function getFilename($size = null)
+	{
+		if (!is_null($size)) {
+			$prefix = '/images/' . $size;
+		} else {
+			$prefix = '';
+		}
+		return $prefix . '/media/' . strtolower($this->type) . '/' . $this->filename;
 	}
 }

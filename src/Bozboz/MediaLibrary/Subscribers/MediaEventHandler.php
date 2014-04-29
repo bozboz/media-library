@@ -22,21 +22,8 @@ class MediaEventHandler
 
 	public function onEloquentSaved($model)
 	{
-		if ($this->isMediableModel($model)) {
-			$input = Input::get('media', array());
-			$relationship = Media::forModel($model);
-			$current = $relationship->get();
-			$currentIds = array_pluck($current, 'id');
-
-			$toDetach = array_diff($currentIds, $input);
-			$toAttach = array_diff($input, $currentIds);
-			
-			if ($toDetach) {
-				$relationship->detach($toDetach);
-			}
-			if ($toAttach) {
-				$relationship->attach($toAttach);
-			}
+		if ($this->isMediableModel($model) && Input::has('media')) {
+			Media::forModel($model)->sync(Input::get('media'));
 		}
 	}
 

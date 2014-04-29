@@ -1,14 +1,9 @@
 @extends('admin::overview')
 
-@section('styles')
-@parent
-	<link rel="stylesheet" href="/packages/bozboz/media-library/css/media-library.css">
-@stop
-
 @section('main')
 	@include('admin::partials.new')
 	<h1>{{ $modelName }}</h1>
-	<ul class="js-masonry secret-list" data-masonry-options='{ "columnWidth": 187, "itemSelector": ".masonry-item" }'>
+	<ul class="js-mason secret-list">
 	@foreach ($report->getRows() as $row)
 		<li class="masonry-item">
 			<a href="{{ URL::action($controller . '@edit', array($row->getId())) }}">
@@ -28,9 +23,4 @@
 	@endforeach
 	</ul>
 	@include('admin::partials.new')
-@stop
-
-@section('scripts')
-@parent
-	<script src="/packages/bozboz/media-library/js/masonry.js"></script>
 @stop

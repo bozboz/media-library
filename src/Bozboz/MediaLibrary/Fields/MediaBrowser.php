@@ -24,26 +24,27 @@ class MediaBrowser extends Field
 		foreach ($this->mediaFactory->all() as $i => $media) {
 			$items[] = sprintf($this->getListItemHTML(),
 				$media->id,
-				$media->id,
-				$media->getFilename('thumb'),
 				Form::checkbox(
 					$this->get('name') . '[]',
 					$media->id,
 					in_array($media->id, $currentValues),
-					array('id' => 'media-' . $media->id)
-				)
+					array('class'=> 'media-is-used', 'id' => 'media-' . $media->id)
+				),
+				$media->id,
+				$media->getFilename('thumb')
+
 			);
 		}
 
-		return '<ul>' . implode(PHP_EOL, $items) . '</ul>';
+		return '<ul class="js-mason secret-list">' . implode(PHP_EOL, $items) . '</ul>';
 	}
 
 	public function getListItemHTML()
 	{
 		return '
-		<li data-id="%d">
-			<label for="media-%d"><img src="%s" width="150"></label>
+		<li class="masonry-item masonry-item-inline-media" data-id="%d">
 			%s
+			<label for="media-%d"><img src="%s" width="150"></label>
 		</li>';
 	}
 

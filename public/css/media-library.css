@@ -4,8 +4,45 @@
 	margin: 0 15px 15px 0;
 	width: 172px;
 	background: #fff;
+	border-radius: 4px;
+}
+.masonry-item-inline-media {
+	padding: 0;
+	border: 0;
+	background: none;
+}
+.masonry-item-inline-media label {
+
+	cursor: pointer;
+	display: block;
+	padding: 10px;
+	border: 1px solid #ddd;
 }
 
 .icons {
 	padding-top: 15px;
 }
+
+.media-is-used {
+	display: none;
+}
+.media-is-used + label {
+	opacity: 0.5;
+	background: #eee;
+}
+.media-is-used:checked + label {
+	opacity: 1;
+	background: #fff;
+	position: relative;
+}
+.media-is-used:checked + label:after {
+	font-family: FontAwesome;
+	content: "\f058";
+	position: absolute;
+	top: -7px;
+	right: 3px;
+	font-size: 36px;
+	color: #5cb85c;
+}
+
+

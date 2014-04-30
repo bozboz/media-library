@@ -8,7 +8,7 @@ use Bozboz\Admin\Models\Base;
 class Media extends Base
 {
 	protected $table = 'media';
-	protected $fillable = array('filename', 'type');
+	protected $fillable = array('filename', 'type', 'caption');
 	private $dynamicRelations = array();
 
 	public function getValidator()

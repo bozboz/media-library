@@ -5,6 +5,7 @@ use Bozboz\MediaLibrary\Models\Media;
 use Illuminate\Config\Repository;
 use Bozboz\Admin\Fields\SelectField;
 use Bozboz\Admin\Fields\FileField;
+use Bozboz\Admin\Fields\TextField;
 
 class MediaAdminDecorator extends ModelAdminDecorator
 {
@@ -20,13 +21,17 @@ class MediaAdminDecorator extends ModelAdminDecorator
 	{
 		return array(
 			'id' => $instance->id,
-			'image' => sprintf('<img src="%s" width="150">', $instance->getFilename('thumb'))
+			'image' => sprintf('<img src="%s" alt="%s" width="150">',
+				$instance->getFilename('thumb'),
+				$this->getLabel($instance)
+			),
+			'caption' => $this->getLabel($instance)
 		);
 	}
 
 	public function getLabel($instance)
 	{
-
+		return $instance->caption ? $instance->caption : $instance->filename;
 	}
 
 	public function getFields()
@@ -36,6 +41,7 @@ class MediaAdminDecorator extends ModelAdminDecorator
 				'image' => 'Image',
 				'pdf' => 'PDF'
 			)))),
+			new TextField(array('name' => 'caption')),
 			new FileField(array('name' => 'filename'))
 		);
 	}

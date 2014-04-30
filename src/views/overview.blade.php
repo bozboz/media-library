@@ -10,6 +10,7 @@
 				{{ $row->getColumns()['image'] }}
 			</a>
 			<div class="icons">
+				<p>{{ $row->getColumns()['caption'] }}</p>
 				<a href="{{ URL::action($controller . '@edit', array($row->getId())) }}" class="btn btn-info btn-sm pull-right">
 					<i class="fa fa-pencil"></i>
 					Edit

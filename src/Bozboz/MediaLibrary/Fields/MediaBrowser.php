@@ -31,8 +31,8 @@ class MediaBrowser extends Field
 					array('class'=> 'media-is-used', 'id' => 'media-' . $media->id)
 				),
 				$media->id,
-				$media->getFilename('thumb')
-
+				$media->getFilename('thumb'),
+				$media->caption ? $media->caption : $media->filename
 			);
 		}
 
@@ -44,7 +44,10 @@ class MediaBrowser extends Field
 		return '
 		<li class="masonry-item masonry-item-inline-media" data-id="%d">
 			%s
-			<label for="media-%d"><img src="%s" width="150"></label>
+			<label for="media-%d">
+				<img src="%s" width="150">
+				<p class="icons">%s</p>
+			</label>
 		</li>';
 	}
 

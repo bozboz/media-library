@@ -16,7 +16,7 @@ class MediaBrowser extends Field
 		parent::__construct($params);
 	}
 
-	public function getInput($params)
+	public function getInput()
 	{
 		$currentValues = $this->getCurrentValues();
 		$items = array();

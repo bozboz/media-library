@@ -3,7 +3,7 @@
 @section('main')
 	@include('admin::partials.new')
 	<h1>{{ $modelName }}</h1>
-	<ul class="js-mason secret-list">
+	<ul class="js-mason secret-list media-view">
 	@foreach ($report->getRows() as $row)
 		<li class="masonry-item">
 			<a href="{{ URL::action($controller . '@edit', array($row->getId())) }}">

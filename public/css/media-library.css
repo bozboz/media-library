@@ -1,3 +1,10 @@
+.media-view {
+	border: solid #ddd;
+	border-width: 1px 0;
+	margin-bottom: 15px;
+	padding-top: 15px;
+}
+
 .masonry-item {
 	padding: 10px;
 	border: 1px solid #ddd;
@@ -47,7 +54,19 @@ p.icons, .icons p {
 	top: -7px;
 	right: 3px;
 	font-size: 36px;
-	color: #5cb85c;
+	color: #5CB85D;
+}
+.media-is-used:checked + label:before {
+	background: #fff;
+	border-radius: 36px;
+	border: 5px solid #3C773D;
+	content: '';
+	display: block;
+	height: 36px;
+	position: absolute;
+	right: 1px;
+	top: 0px;
+	width: 36px;
 }
 
 

@@ -31,7 +31,7 @@ class MediaBrowser extends Field
 					array('class'=> 'media-is-used', 'id' => 'media-' . $media->id)
 				),
 				$media->id,
-				$media->getFilename('thumb'),
+				$media->getFilename('library'),
 				$media->caption ? $media->caption : $media->filename
 			);
 		}

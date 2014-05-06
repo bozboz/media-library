@@ -22,7 +22,7 @@ class MediaAdminDecorator extends ModelAdminDecorator
 		return array(
 			'id' => $instance->id,
 			'image' => sprintf('<img src="%s" alt="%s" width="150">',
-				$instance->getFilename('thumb'),
+				$instance->getFilename('library'),
 				$this->getLabel($instance)
 			),
 			'caption' => $this->getLabel($instance)

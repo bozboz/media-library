@@ -3,6 +3,7 @@
 	border-width: 1px 0;
 	margin-bottom: 15px;
 	padding-top: 15px;
+	overflow: hidden;
 }
 
 .masonry-item {
@@ -12,6 +13,7 @@
 	width: 172px;
 	background: #fff;
 	border-radius: 4px;
+	float: left;
 }
 .masonry-item-inline-media {
 	padding: 0;
@@ -69,4 +71,15 @@ p.icons, .icons p {
 	width: 36px;
 }
 
+.media-modal ul {
+	margin-right: -15px;
+}
+
+.media-modal .modal-dialog {
+	width: 775px;
+}
+
+.media-browser {
+	overflow: hidden;
+}
 

@@ -2,7 +2,7 @@
 
 use Bozboz\Admin\Fields\Field;
 use Bozboz\MediaLibrary\Models\Media;
-use Eloquent, Form;
+use Eloquent, Form, View;
 
 class MediaBrowser extends Field
 {
@@ -21,34 +21,18 @@ class MediaBrowser extends Field
 		$currentValues = $this->getCurrentValues();
 		$items = array();
 
-		foreach ($this->mediaFactory->all() as $i => $media) {
-			$items[] = sprintf($this->getListItemHTML(),
-				$media->id,
-				Form::checkbox(
-					$this->get('name') . '[]',
-					$media->id,
-					in_array($media->id, $currentValues),
-					array('class'=> 'media-is-used', 'id' => 'media-' . $media->id)
-				),
-				$media->id,
-				$media->getFilename('library'),
-				$media->caption ? $media->caption : $media->filename
+		foreach($currentValues as $inst) {
+			$items[] = array(
+				'id' => $inst->id,
+				'caption' => $inst->caption ? $inst->caption : $inst->filename,
+				'filename' => $inst->getFilename('thumb'),
+				'selected' => false
 			);
 		}
 
-		return '<ul class="js-mason secret-list">' . implode(PHP_EOL, $items) . '</ul>';
-	}
+		$data = json_encode(array('media' => $items, 'fieldId' => 'media'));
 
-	public function getListItemHTML()
-	{
-		return '
-		<li class="masonry-item masonry-item-inline-media" data-id="%d">
-			%s
-			<label for="media-%d">
-				<img src="%s" width="150">
-				<p class="icons">%s</p>
-			</label>
-		</li>';
+		return View::make('media-library::fields.media-browser')->with('data', $data);
 	}
 
 	/**
@@ -64,8 +48,7 @@ class MediaBrowser extends Field
 		if (empty($instance)) { //new model
 			return array();
 		} else {
-			$current = $this->mediaFactory->forModel($instance)->get();
-			return array_pluck($current, 'id');
+			return $this->mediaFactory->forModel($instance)->get();
 		}
 	}
 }

@@ -48,7 +48,7 @@ $('#update-media').on('click', function(e) {
 		});
 	});
 	var template = Handlebars.compile(itemTpl);
-	var container = mediaField.html(template({media: data}));
+	var container = mediaField.html(template({media: data, fieldId: 'media'}));
 	e.preventDefault();
 });
 

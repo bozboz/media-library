@@ -29,7 +29,7 @@ class MediaLibraryAdminController extends ModelAdminController
 			$data[] = array(
 				'id' => $inst->id,
 				'caption' => $inst->caption ? $inst->caption : $inst->filename,
-				'filename' => $inst->getFilename('thumb')
+				'filename' => $inst->getFilename('library')
 			);
 		}
 		return Response::json(array('media' => $data, 'fieldId' => 'library'));

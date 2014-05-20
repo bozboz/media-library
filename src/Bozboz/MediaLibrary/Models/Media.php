@@ -101,7 +101,7 @@ class Media extends Base
 	 */
 	public static function forModel(Eloquent $model)
 	{
-		return $model->morphToMany(get_class(), 'mediable');
+		return $model->morphToMany(get_class(), 'mediable')->orderBy('sorting');
 	}
 
 	/**

@@ -52,5 +52,9 @@ $('#update-media').on('click', function(e) {
 	e.preventDefault();
 });
 
+$('.media-browser').sortable({
+	placeholder: '<li class="placeholder masonry-item"></li>'
+});
+
 var template = Handlebars.compile(itemTpl);
 mediaField.html(template(data));

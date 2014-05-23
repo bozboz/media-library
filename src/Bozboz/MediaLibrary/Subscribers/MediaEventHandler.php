@@ -22,8 +22,10 @@ class MediaEventHandler
 
 	public function onEloquentSaved($model)
 	{
-		if ($this->isMediableModel($model) && Input::has('media')) {
-			foreach(Input::get('media') as $i => $uid) {
+		if ($this->isMediableModel($model)) {
+			$data = array();
+			$media = is_array(Input::get('media'))? Input::get('media') : array();
+			foreach($media as $i => $uid) {
 				$data[$uid] = array('sorting' => $i);
 			}
 			Media::forModel($model)->sync($data);

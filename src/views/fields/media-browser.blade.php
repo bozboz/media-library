@@ -1,3 +1,5 @@
+{{ Form::hidden('media') }}
+
 <ul class="secret-list media-browser" id="current-media"></ul>
 
 <script>

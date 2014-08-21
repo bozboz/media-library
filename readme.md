@@ -13,19 +13,24 @@ This package provides the ability to relate a piece of Media to any model via a 
 		'allowed_media_types' => ['Image', 'PDF'],
 		'models' => [
 			'Bozboz\Admin\Models\Page' => [
-				'alias' => 'pages',
-				'sizes' => [
-					'thumb' => [
-						'width' => 1337,
-						'height' => 1337
-					]
-				]
+				'alias' => 'pages'
 			]
 		]
 	];
 ```
 
-If you wish to add to this configuration or override existing values, simply publish to the config to the app by using "config:publish" artisan command.
+If you wish to add to this configuration or override existing values, simply publish the config to the app by using "config:publish" artisan command.
+
+## Additional sizes
+
+You need to publish the `thapp/jitimage` config file and add an entry to the `recipes` array. Pleaase define a `library` size in order for the overview screen in the admin area to correctly display the images.
+
+```
+'recipes' => [
+	'library' => new Resize(150, 0),
+],
+
+```
 
 ## General information
 

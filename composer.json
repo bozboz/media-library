@@ -9,9 +9,8 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/support": "4.1.*",
         "thapp/jitimage": "0.1.*",
-        "bozboz/admin": "0.1.*"
+        "bozboz/admin": "0.2.*"
     },
     "autoload": {
         "classmap": [

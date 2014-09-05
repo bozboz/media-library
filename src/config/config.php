@@ -7,13 +7,7 @@ return [
 	],
 	'models' => [
 		'Bozboz\Admin\Models\Page' => [
-			'alias' => 'pages',
-			'sizes' => [
-				'thumb' => [
-					'width' => 1337,
-					'height' => 1337
-				]
-			]
+			'alias' => 'pages'
 		]
 	]
 ];

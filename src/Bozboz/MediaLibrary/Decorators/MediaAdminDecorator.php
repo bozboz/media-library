@@ -34,7 +34,7 @@ class MediaAdminDecorator extends ModelAdminDecorator
 		return $instance->caption ? $instance->caption : $instance->filename;
 	}
 
-	public function getFields()
+	public function getFields($fields)
 	{
 		return array(
 			new SelectField(array('name' => 'type', 'options' => $this->config->get('media-library::allowed_media_types', array(

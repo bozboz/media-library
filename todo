@@ -1,0 +1,5 @@
+alt_text has a html "name" of "metadata_alt_text" (this is keeping in mind that future compositions
+might have clashing attribute names) but this is causing problems populating the input field on
+initial load. change ImageMetadataAdminDecorator::getFields to get it to populate again but will
+naturally fail as controller is picking up keys with "metadata_" in them. basic "update" controller
+action but not properly tested yet.

@@ -8,8 +8,10 @@ use Bozboz\Admin\Models\Base;
 class Media extends Base
 {
 	protected $table = 'media';
-	protected $fillable = array('filename', 'type', 'caption');
-	private $dynamicRelations = array();
+
+	protected $fillable = ['filename', 'type', 'caption', 'metadata_type', 'metadata_id'];
+
+	private $dynamicRelations = [];
 
 	public function getValidator()
 	{
@@ -24,6 +26,11 @@ class Media extends Base
 			$uploadSuccess = $file->move($destinationPath, $file->getClientOriginalName());
 			$this->attributes['filename'] = $file->getClientOriginalName();
 		}
+	}
+
+	public function metadata()
+	{
+		return $this->morphTo();
 	}
 
 	/**

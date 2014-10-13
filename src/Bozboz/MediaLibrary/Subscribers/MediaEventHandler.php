@@ -13,11 +13,17 @@ class MediaEventHandler
 		return array_key_exists(get_class($model), $models);
 	}
 
-	public function onFieldsBuilt($fieldsObj, $model)
+	public function onFieldsBuilt($fields, $model)
 	{
 		if ($this->isMediableModel($model)) {
-			$fieldsObj[] = new MediaBrowser($model, new Media, array('name' => 'media'));
+			$configs = Config::get('media-library::models')[get_class($model)];
+			$i = count($fields->getAttributes());
+			foreach ($configs as $config) {
+				$fields[$i++] = new MediaBrowser($model, new Media, ['name' => $config['model_alias']]);
+			}
 		}
+
+		return $fields;
 	}
 
 	public function onEloquentSaved($model)

@@ -69,8 +69,22 @@ class Media extends Base
 	 */
 	private function relationshipExists($relation)
 	{
-		$mediaModelsConfig = Config::get('media-library::models');
-		return in_array($relation, array_fetch($mediaModelsConfig, 'alias'));
+		$i = 0;
+		$exists = false;
+		$mediaModels = Config::get('media-library::models');
+		$keys = array_keys($mediaModels);
+		while ($i < count($keys) && !$exists) {
+			$j = 0;
+			$key = $keys[$i];
+			$configs = $mediaModels[$key];
+			while ($j < count($configs) && !$exists) {
+				$exists = isset($configs[$j]['media_alias']) && $relation === $configs[$j]['media_alias'];
+				$j++;
+			}
+			$i++;
+		}
+
+		return $exists;
 	}
 
 	/**
@@ -81,14 +95,14 @@ class Media extends Base
 	 */
 	private function defineRelation($relation)
 	{
-		$mediaModelsConfig = Config::get('media-library::models');
-
-		foreach($mediaModelsConfig as $fullModelName => $rel) {
-			if ($rel['alias'] === $relation) {
-				return $this->dynamicRelations[$relation] = $this->morphedByMany(
-					$fullModelName,
-					'mediable'
-				);
+		foreach (Config::get('media-library::models') as $namespace => $configs) {
+			foreach ($configs as $config) {
+				if (isset($config['media_alias']) && $config['media_alias'] === $relation) {
+					return $this->dynamicRelations[$relation] = $this->morphedByMany(
+						$namespace,
+						'mediable'
+					);
+				}
 			}
 		}
 	}

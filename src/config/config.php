@@ -7,7 +7,9 @@ return [
 	],
 	'models' => [
 		'Bozboz\Admin\Models\Page' => [
-			'alias' => 'pages'
+			[
+				'media_alias' => 'pages'
+			]
 		]
 	]
 ];

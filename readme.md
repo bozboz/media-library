@@ -53,13 +53,9 @@ This package provides the ability to relate a piece of Media to any model via a 
 By default, only Pages will be mediable out of the box. You can define new media models inside `app/config/packages/bozboz/media-library/config.php`:
 ```
 	'models' => [
-		'Bozboz\Admin\Models\Page' => [
-			'alias' => 'pages'
-		]
+		'Bozboz\Admin\Models\Page'
 	]
 ```
-
-The value of **alias** is used when accessing the related Page models on the Media instance (e.g. a Media instance has many Pages which can be accessed via $media->pages).
 
 ## General information
 

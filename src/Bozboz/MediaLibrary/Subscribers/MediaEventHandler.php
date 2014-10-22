@@ -10,7 +10,7 @@ class MediaEventHandler
 	private function isMediableModel($model)
 	{
 		$models = Config::get('media-library::models');
-		return array_key_exists(get_class($model), $models);
+		return in_array(get_class($model), $models);
 	}
 
 	public function onFieldsBuilt($fieldsObj, $model)

@@ -17,28 +17,6 @@ class MediaTest extends \Bozboz\Admin\Tests\TestCase
 		Mockery::close();
 	}
 
-	public function testGetAttribute()
-	{
-		$media = new Media;
-		$this->assertNull($media->someVarThatDoesNotExist);
-		$this->assertInstanceOf('Illuminate\Database\Eloquent\Collection', $media->pages);
-	}
-
-	public function testCall()
-	{
-		$media = new Media;
-		$this->assertInstanceOf('Illuminate\Database\Eloquent\Relations\MorphToMany', $media->pages());
-	}
-
-	/**
-	 * @expectedException BadMethodCallException
-	 */
-	public function testBadCall()
-	{
-		$media = new Media;
-		$media->methodDoesNotExist();
-	}
-
 	public function testForModel()
 	{
 		$this->assertInstanceOf(

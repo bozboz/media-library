@@ -6,6 +6,8 @@ return [
 		'pdf' => 'PDF'
 	],
 	'models' => [
-		'Bozboz\Admin\Models\Page'
+		'Bozboz\Admin\Models\Page' => [
+			'alias' => 'media',
+		],
 	]
 ];

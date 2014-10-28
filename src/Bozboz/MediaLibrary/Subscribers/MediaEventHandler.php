@@ -7,29 +7,39 @@ use Config, Input;
 
 class MediaEventHandler
 {
-	private function isMediableModel($model)
-	{
-		$models = Config::get('media-library::models');
-		return array_key_exists(get_class($model), $models);
-	}
-
 	public function onFieldsBuilt($fieldsObj, $model)
 	{
 		if ($this->isMediableModel($model)) {
-			$fieldsObj[] = new MediaBrowser($model, new Media, array('name' => 'media'));
+			$fieldsObj[] = new MediaBrowser($model, new Media, [
+				'name' => 'media',
+				'aliases' => $this->getModelAliases($model)
+			]);
 		}
 	}
 
 	public function onEloquentSaved($model)
 	{
 		if ($this->isMediableModel($model)) {
-			$data = array();
+			$sync = array();
 			$media = is_array(Input::get('media'))? Input::get('media') : array();
-			foreach($media as $i => $uid) {
-				$data[$uid] = array('sorting' => $i);
+			foreach($media as $i => $data) {
+				if (array_key_exists('id', $data)) {
+					$sync[$data['id']] = ['sorting' => $i, 'alias' => $data['alias']];
+				}
 			}
-			Media::forModel($model)->sync($data);
+			Media::forModel($model)->sync($sync);
 		}
+	}
+
+	private function isMediableModel($model)
+	{
+		$models = Config::get('media-library::models');
+		return array_key_exists(get_class($model), $models);
+	}
+
+	private function getModelAliases($model)
+	{
+		return Config::get('media-library::models.' . get_class($model));
 	}
 
 	public function onRenderMenu(Menu $menu)

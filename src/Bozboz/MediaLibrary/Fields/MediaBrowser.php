@@ -25,12 +25,17 @@ class MediaBrowser extends Field
 			$items[] = array(
 				'id' => $inst->id,
 				'caption' => $inst->caption ? $inst->caption : $inst->filename,
-				'filename' => $inst->getFilename('thumb'),
-				'selected' => false
+				'filename' => $inst->filename,
+				'selected' => true,
+				'alias' => $inst->pivot->alias
 			);
 		}
 
-		$data = json_encode(array('media' => $items, 'fieldId' => 'media'));
+		$data = json_encode(array(
+			'media' => $items,
+			'aliases' => $this->get('aliases', []),
+			'mediaPath' => dirname($inst->getFilename('thumb'))
+		));
 
 		return View::make('media-library::fields.media-browser')->with('data', $data);
 	}

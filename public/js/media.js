@@ -5,8 +5,13 @@ function MediaViewModel(data)
 	this.aliases = data.aliases;
 
 	this.selectedMedia = {
+		mediaPath: data.mediaPath,
 		media: ko.observableArray(data.media),
 		fieldId: 'media',
+		getFilename: function(filename)
+		{
+			return this.mediaPath + '/' + filename;
+		},
 		update: function()
 		{
 			var mediaLibrary = self.mediaLibrary.media();
@@ -21,6 +26,10 @@ function MediaViewModel(data)
 		loaded: ko.observable(false),
 		media: ko.observableArray([]),
 		fieldId: 'library',
+		getFilename: function(filename)
+		{
+			return this.mediaPath + '/' + filename;
+		},
 		browse: function()
 		{
 			if (!self.mediaLibrary.loaded()) {
@@ -34,6 +43,7 @@ function MediaViewModel(data)
 						item.alias = selectedMedia.alias;
 					});
 
+					self.mediaLibrary.mediaPath = data.mediaPath;
 					self.mediaLibrary.media(data.media);
 
 					var masonryContainer = $('#media-modal .modal-body ul');

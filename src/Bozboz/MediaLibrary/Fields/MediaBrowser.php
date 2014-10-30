@@ -34,7 +34,7 @@ class MediaBrowser extends Field
 		$data = json_encode(array(
 			'media' => $items,
 			'aliases' => $this->get('aliases', []),
-			'mediaPath' => dirname($this->mediaFactory->getFilename('thumb'))
+			'mediaPath' => $this->mediaFactory->getFilePath('image', 'thumb'),
 		));
 
 		return View::make('media-library::fields.media-browser')->with('data', $data);

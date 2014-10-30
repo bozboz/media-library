@@ -34,6 +34,6 @@ class MediaLibraryAdminController extends ModelAdminController
 				'alias' => null
 			);
 		}
-		return Response::json(['media' => $data, 'mediaPath' => dirname($inst->getFilename('library'))]);
+		return Response::json(['media' => $data, 'mediaPath' => $this->decorator->getModel()->getFilepath('image', 'library')]);
 	}
 }

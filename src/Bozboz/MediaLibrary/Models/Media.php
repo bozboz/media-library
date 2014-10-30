@@ -46,4 +46,9 @@ class Media extends Base
 		}
 		return $prefix . '/media/' . strtolower($this->type) . '/' . $this->filename;
 	}
+
+	public function getFilepath($type, $size)
+	{
+		return strtolower(sprintf('/images/%s/media/%s', $size, $type));
+	}
 }

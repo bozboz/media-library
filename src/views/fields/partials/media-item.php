@@ -13,7 +13,8 @@
 		<select data-bind="
 			attr: { name: 'media[' + $index() + '][alias]' },
 			options: $parents[1].aliases,
-			value: alias
+			value: alias,
+			visible: $parents[1].aliases.length
 		"></select>
 	</label>
 </li>

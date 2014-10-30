@@ -24,7 +24,11 @@ class MediaEventHandler
 			$media = is_array(Input::get('media'))? Input::get('media') : array();
 			foreach($media as $i => $data) {
 				if (array_key_exists('id', $data)) {
-					$sync[$data['id']] = ['sorting' => $i, 'alias' => $data['alias']];
+
+					$sync[$data['id']] = ['sorting' => $i];
+					if (!empty($data['alias'])) {
+						$sync[$data['id']]['alias'] = $data['alias'];
+					}
 				}
 			}
 			Media::forModel($model)->sync($sync);

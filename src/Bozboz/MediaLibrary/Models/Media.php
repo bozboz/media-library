@@ -37,6 +37,11 @@ class Media extends Base
 		return $model->morphToMany(get_class(), 'mediable')->withPivot('alias')->orderBy('sorting');
 	}
 
+	public function scopeAlias($query, $alias)
+	{
+		$query->where('alias', '=', $alias);
+	}
+
 	public function getFilename($size = null)
 	{
 		if (!is_null($size)) {

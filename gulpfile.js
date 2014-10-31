@@ -1,28 +1,16 @@
-var scriptsDest = 'public/js/min/';
+var gulp = require('gulp');
+var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
 
-var appFiles = {
-	scripts: [
-		'bower_components/PATH_TO_FILE',
-		'bower_components/PATH_TO_FILE',
-		'public/js/media_OLD.js',
-	]
-}
-
-
-
-var gulp = require('gulp'),
-	concat = require('gulp-concat'),
-    ugligy = require('gulp-uglify');
-
-
-gulp.task('scripts', function() {
-  gulp.src(appFiles.scripts)
-  	.pipe(concat('media.js'))
-		.pipe(gulp.dest(paths.scripts.dest))
-		.pipe(uglify())
-		.pipe(gulp.dest(paths.scripts.dest));
+gulp.task('js', function(){
+    gulp.src([
+	'bower_components/knockout/dist/knockout.js',
+	'bower_components/masonry/dist/masonry.pkgd.js',
+	'src/assets/js/media-browser.js'
+    ])
+    .pipe(uglify())
+    .pipe(concat('media.js'))
+    .pipe(gulp.dest('public/js/'));
 });
 
-
-
-gulp.task('default', ['scripts']);
+gulp.task('default', ['js']);

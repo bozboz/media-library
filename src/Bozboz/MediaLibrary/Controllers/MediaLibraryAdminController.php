@@ -29,9 +29,11 @@ class MediaLibraryAdminController extends ModelAdminController
 			$data[] = array(
 				'id' => $inst->id,
 				'caption' => $inst->caption ? $inst->caption : $inst->filename,
-				'filename' => $inst->getFilename('library')
+				'filename' => $inst->filename,
+				'selected' => false,
+				'alias' => null
 			);
 		}
-		return Response::json(array('media' => $data, 'fieldId' => 'library'));
+		return Response::json(['media' => $data, 'mediaPath' => $this->decorator->getModel()->getFilepath('image', 'library')]);
 	}
 }

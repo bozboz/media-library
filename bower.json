@@ -1,0 +1,10 @@
+{
+  "name": "media-library",
+  "authors": [
+    "Sam King <sdking02@gmail.com>"
+  ],
+  "dependencies": {
+    "knockout": "~3.2.0",
+    "masonry" : "~3.1.5"
+  }
+}

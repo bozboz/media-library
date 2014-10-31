@@ -20,7 +20,7 @@ class MediaAdminDecorator extends ModelAdminDecorator
 	public function getColumns($instance)
 	{
 		return array(
-			'id' => $instance->id,
+			'id' => $instance->getKey(),
 			'image' => sprintf('<img src="%s" alt="%s" width="150">',
 				$instance->getFilename('library'),
 				$this->getLabel($instance)

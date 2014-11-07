@@ -34,7 +34,7 @@ class MediaAdminDecorator extends ModelAdminDecorator
 		return $instance->caption ? $instance->caption : $instance->filename;
 	}
 
-	public function getFields($fields)
+	public function getFields($instance)
 	{
 		return array(
 			new SelectField(array('name' => 'type', 'options' => $this->config->get('media-library::allowed_media_types', array(
@@ -42,7 +42,10 @@ class MediaAdminDecorator extends ModelAdminDecorator
 				'pdf' => 'PDF'
 			)))),
 			new TextField(array('name' => 'caption')),
-			new FileField(array('name' => 'filename'))
+			new FileField(array(
+				'name' => 'filename',
+				'model' => $instance
+			))
 		);
 	}
 }

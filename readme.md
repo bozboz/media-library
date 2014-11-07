@@ -28,13 +28,11 @@ This package provides the ability to relate a piece of Media to any model via a 
 
 4. Run `./artisan migrate`
 
-5. Run `./artisan asset:publish bozboz/media-library`
+5. Run `gulp`
 
-6. Run `gulp`
+6. Run `./artisan config:publish thapp/jitimage`
 
-7. Run `./artisan config:publish thapp/jitimage`
-
-8. Open `app/config/packages/thapp/jitimage/config.php` and update with the following:
+7. Open `app/config/packages/thapp/jitimage/config.php` and update with the following:
 ```
 	use Bozboz\MediaLibrary\ImageFilters\Resize;
 	use Bozboz\MediaLibrary\ImageFilters\ResizeAndCrop;

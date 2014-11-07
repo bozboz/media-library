@@ -25,9 +25,9 @@ class FileField extends Field
 			$html .= sprintf('<img src="%s" style="margin-bottom: 5px; display: block">', $filename);
 
 			$html .= '<p>' . $model->filename . '</p>';
+		} else {
+			$html = Form::file($this->get('name'), $this->attributes);
 		}
-
-		$html .= Form::file($this->get('name'), $this->attributes);
 
 		return $html;
 	}

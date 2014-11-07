@@ -4,8 +4,8 @@ use Bozboz\Admin\Decorators\ModelAdminDecorator;
 use Bozboz\MediaLibrary\Models\Media;
 use Illuminate\Config\Repository;
 use Bozboz\Admin\Fields\SelectField;
-use Bozboz\Admin\Fields\FileField;
 use Bozboz\Admin\Fields\TextField;
+use Bozboz\MediaLibrary\Fields\FileField;
 
 class MediaAdminDecorator extends ModelAdminDecorator
 {

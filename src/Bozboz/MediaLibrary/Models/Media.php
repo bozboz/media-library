@@ -11,6 +11,11 @@ class Media extends Base
 	protected $fillable = array('filename', 'type', 'caption');
 	private $dynamicRelations = array();
 
+	public function mediable()
+	{
+		return $this->morphTo();
+	}
+
 	public function getValidator()
 	{
 		return new MediaValidator;

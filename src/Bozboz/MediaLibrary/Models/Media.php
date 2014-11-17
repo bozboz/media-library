@@ -28,6 +28,8 @@ class Media extends Base
 			$destinationPath = public_path() . '/media/' . strtolower($this->type) . '/';
 			$uploadSuccess = $file->move($destinationPath, $file->getClientOriginalName());
 			$this->attributes['filename'] = $file->getClientOriginalName();
+		} else {
+			$this->attributes['filename'] = $value;
 		}
 	}
 

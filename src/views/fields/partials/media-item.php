@@ -8,7 +8,7 @@
 		}
 	">
 	<label data-bind="attr: { for: $parent.fieldId + '-' + id }">
-		<img data-bind="attr: { src: $parent.getFilename(filename) }" width="150">
+		<img data-bind="attr: { src: type === 'pdf' ? '/packages/bozboz/media-library/images/document.png' : $parent.getFilename(filename) }" width="150">
 		<p class="icons" data-bind="text: caption"></p>
 		<select data-bind="
 			attr: { name: 'media[' + $index() + '][alias]' },

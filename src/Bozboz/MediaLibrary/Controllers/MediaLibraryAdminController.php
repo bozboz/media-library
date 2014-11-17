@@ -31,6 +31,7 @@ class MediaLibraryAdminController extends ModelAdminController
 				'caption' => $inst->caption ? $inst->caption : $inst->filename,
 				'filename' => $inst->filename,
 				'selected' => false,
+				'type' => $inst->type,
 				'alias' => null
 			);
 		}

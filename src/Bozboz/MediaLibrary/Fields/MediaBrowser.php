@@ -24,6 +24,7 @@ class MediaBrowser extends Field
 		foreach($currentValues as $inst) {
 			$items[] = array(
 				'id' => $inst->id,
+				'type' => $inst,
 				'caption' => $inst->caption ? $inst->caption : $inst->filename,
 				'filename' => $inst->filename,
 				'selected' => true,

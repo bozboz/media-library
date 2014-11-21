@@ -9,7 +9,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "bozboz/jitimage": "dev-master",
+        "thapp/jitimage": "0.1.*",
         "bozboz/admin": "dev-master"
     },
     "autoload": {

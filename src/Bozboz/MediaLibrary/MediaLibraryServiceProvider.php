@@ -20,6 +20,22 @@ class MediaLibraryServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 		$this->package('bozboz/media-library');
+		$this->registerMediaHtmlMacro();
+	}
+
+	private function registerMediaHtmlMacro()
+	{
+		$html = $this->app['html'];
+
+		$html->macro('media', function($item, $size = null, $default = null, $alt = null, $attributes = []) use ($html)
+		{
+			$item = Models\Media::forModel($item)->first();
+
+			if ($item || $default) {
+				$filename = $item ? $item->getFilename($size) : $default;
+				return $html->image($filename, $alt, $attributes);
+			}
+		});
 	}
 
 	/**

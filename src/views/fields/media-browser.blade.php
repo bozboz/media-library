@@ -1,5 +1,3 @@
-{{ Form::hidden('media') }}
-
 <div data-bind="with: selectedMedia">
   <ul class="secret-list media-browser" data-bind="template: { name: 'media-item-template', foreach: media }"></ul>
 </div>

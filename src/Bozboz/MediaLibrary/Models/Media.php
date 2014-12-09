@@ -26,12 +26,24 @@ class Media extends Base
 		if (Input::hasFile('filename')) {
 			$file = Input::file('filename');
 			$destinationPath = public_path() . '/media/' . strtolower($this->type) . '/';
-			$filename = Str::slug($file->getClientOriginalName());
+			$filename = $this->cleanFilename($file->getClientOriginalName());
 			$uploadSuccess = $file->move($destinationPath, $filename);
 			$this->attributes['filename'] = $filename;
 		} else {
 			$this->attributes['filename'] = $value;
 		}
+	}
+
+	private function cleanFilename($filename)
+	{
+		$filenameExploded = explode('.', $filename);
+		$filename = $filenameExploded[0];
+		$fileExtension = isset($filenameExploded[1]) ? $filenameExploded[1] : '';
+
+		$cleanFilename = Str::slug($filename);
+		$cleanFilename .= empty($fileExtension) ? '' : '.' . $fileExtension;
+
+		return $cleanFilename;
 	}
 
 	/**

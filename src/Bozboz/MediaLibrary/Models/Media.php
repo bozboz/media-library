@@ -1,6 +1,6 @@
 <?php namespace Bozboz\MediaLibrary\Models;
 
-use Eloquent, Input, Config;
+use Eloquent, Input, Config, Str;
 use Bozboz\MediaLibrary\Validators\MediaValidator;
 use Bozboz\MediaLibrary\Exceptions\InvalidConfigurationException;
 use Bozboz\Admin\Models\Base;
@@ -26,8 +26,9 @@ class Media extends Base
 		if (Input::hasFile('filename')) {
 			$file = Input::file('filename');
 			$destinationPath = public_path() . '/media/' . strtolower($this->type) . '/';
-			$uploadSuccess = $file->move($destinationPath, $file->getClientOriginalName());
-			$this->attributes['filename'] = $file->getClientOriginalName();
+			$filename = Str::slug($file->getClientOriginalName());
+			$uploadSuccess = $file->move($destinationPath, $filename);
+			$this->attributes['filename'] = $filename;
 		} else {
 			$this->attributes['filename'] = $value;
 		}

@@ -29,7 +29,7 @@ class MediaLibraryServiceProvider extends ServiceProvider {
 
 		$html->macro('media', function($item, $size = null, $default = null, $alt = null, $attributes = []) use ($html)
 		{
-			$item = Models\Media::forModel($item)->first();
+			$item = $item->first();
 
 			if ($item || $default) {
 				$filename = $item ? $item->getFilename($size) : $default;

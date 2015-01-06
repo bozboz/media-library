@@ -1,5 +1,6 @@
 <?php namespace Bozboz\MediaLibrary;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\ServiceProvider;
 use Event;
 
@@ -27,9 +28,9 @@ class MediaLibraryServiceProvider extends ServiceProvider {
 	{
 		$html = $this->app['html'];
 
-		$html->macro('media', function($item, $size = null, $default = null, $alt = null, $attributes = []) use ($html)
+		$html->macro('media', function(Builder $builder, $size = null, $default = null, $alt = null, $attributes = []) use ($html)
 		{
-			$item = $item->first();
+			$item = $builder->first();
 
 			if ($item || $default) {
 				$filename = $item ? $item->getFilename($size) : $default;

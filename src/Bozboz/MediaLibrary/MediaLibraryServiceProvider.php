@@ -1,8 +1,6 @@
 <?php namespace Bozboz\MediaLibrary;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\ServiceProvider;
-use Event;
 
 class MediaLibraryServiceProvider extends ServiceProvider {
 
@@ -26,17 +24,32 @@ class MediaLibraryServiceProvider extends ServiceProvider {
 
 	private function registerMediaHtmlMacro()
 	{
-		$html = $this->app['html'];
+		$this->app['html']->macro('media', [$this, 'mediaMacro']);
+	}
 
-		$html->macro('media', function(Builder $builder, $size = null, $default = null, $alt = null, $attributes = []) use ($html)
-		{
-			$item = $builder->first();
+	/**
+	 * Render an HTML image tag based on Media of the first result of provided
+	 * query $builder object, or fall back to optional $default filename.
+	 *
+	 * Example usage:
+	 *
+	 * HTML::media(Media::forModel($item), 'thumb', '/images/default.png', $item->name);
+	 *
+	 * @param  mixed  $builder
+	 * @param  string  $size
+	 * @param  string  $default
+	 * @param  string  $alt
+	 * @param  array  $attributes
+	 * @return string
+	 */
+	public function mediaMacro($builder, $size = null, $default = null, $alt = null, $attributes = [])
+	{
+		$item = $builder->first();
 
-			if ($item || $default) {
-				$filename = $item ? $item->getFilename($size) : $default;
-				return $html->image($filename, $alt, $attributes);
-			}
-		});
+		if ($item || $default) {
+			$filename = $item ? $item->getFilename($size) : $default;
+			return $this->app['html']->image($filename, $alt, $attributes);
+		}
 	}
 
 	/**
@@ -47,7 +60,8 @@ class MediaLibraryServiceProvider extends ServiceProvider {
 	public function register()
 	{
 		require __DIR__ . '/../../routes.php';
-		Event::subscribe(new Subscribers\MediaEventHandler);
+
+		$this->app['events']->subscribe(new Subscribers\MediaEventHandler);
 	}
 
 	/**

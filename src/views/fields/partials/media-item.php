@@ -4,7 +4,7 @@
 		value: id,
 		attr: { 
 			id: $parent.fieldId + '-' + id,
-			name: 'media[' + $index() + '][id]'
+			name: $parent.fieldId + '[' + $index() + '][id]'
 		}
 	">
 	<label data-bind="attr: { for: $parent.fieldId + '-' + id }">

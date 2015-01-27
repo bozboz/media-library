@@ -1,3 +1,9 @@
+# Version 0.4.1 (2015-01-27)
+
+-	Fix bug when saving Media
+-	Fix disappearing Media issue when sorting
+
+
 # Version 0.4.0 (2015-01-13)
 
 -	Fix incorrect composite key in mediables table

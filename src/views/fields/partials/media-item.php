@@ -11,7 +11,7 @@
 		<img data-bind="attr: { src: type === 'pdf' ? '/packages/bozboz/media-library/images/document.png' : $parent.getFilename(filename) }" width="150">
 		<p class="icons" data-bind="text: caption"></p>
 		<select data-bind="
-			attr: { name: 'media[' + $index() + '][alias]' },
+			attr: { name: $parent.fieldId + '[' + $index() + '][alias]' },
 			options: $parents[1].aliases,
 			value: alias,
 			visible: $parents[1].aliases.length

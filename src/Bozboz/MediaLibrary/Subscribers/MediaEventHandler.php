@@ -19,7 +19,7 @@ class MediaEventHandler
 
 	public function onEloquentSaved($model)
 	{
-		if ($this->isMediableModel($model)) {
+		if ($this->isMediableModel($model) && $this->inputHasMediaData()) {
 			$sync = array();
 			$media = is_array(Input::get('media'))? Input::get('media') : array();
 			foreach($media as $i => $data) {
@@ -33,6 +33,15 @@ class MediaEventHandler
 			}
 			Media::forModel($model)->sync($sync);
 		}
+	}
+
+	/**
+	 * Determine whether user came from a form containing
+	 * a "media" input.
+	 */
+	private function inputHasMediaData()
+	{
+		return !is_null(Input::get('media'));
 	}
 
 	private function isMediableModel($model)

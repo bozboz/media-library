@@ -21,10 +21,9 @@ class MediaEventHandler
 	{
 		if ($this->isMediableModel($model) && $this->inputHasMediaData()) {
 			$sync = array();
-			$media = is_array(Input::get('media'))? Input::get('media') : array();
+			$media = is_array(Input::get('media'))? array_values(Input::get('media')) : array();
 			foreach($media as $i => $data) {
 				if (array_key_exists('id', $data)) {
-
 					$sync[$data['id']] = ['sorting' => $i];
 					if (!empty($data['alias'])) {
 						$sync[$data['id']]['alias'] = $data['alias'];

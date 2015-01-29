@@ -1,3 +1,7 @@
+# Version 0.4.2 (2015-01-29)
+-   Fix sorting bug when saving media on a model
+
+
 # Version 0.4.1 (2015-01-27)
 
 -	Fix bug when saving Media

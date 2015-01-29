@@ -1,3 +1,8 @@
+# Version 0.4.3 (2015-01-29)
+
+-	Tie bozboz/admin dependency to ~0.4
+
+
 # Version 0.4.2 (2015-01-29)
 -   Fix sorting bug when saving media on a model
 

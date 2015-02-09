@@ -48,7 +48,8 @@ class MediaLibraryServiceProvider extends ServiceProvider {
 
 		if ($item || $default) {
 			$filename = $item ? $item->getFilename($size) : $default;
-			return $this->app['html']->image($filename, $alt, $attributes);
+			$altText = $alt ? $alt : $item->caption;
+			return $this->app['html']->image($filename, $altText, $attributes);
 		}
 	}
 

@@ -1,4 +1,10 @@
+# Version 0.5.0 (FUTURE RELEASE)
+
+-   Fall back to media caption if no alt text is provided, when using `HTML::media()`
+
+
 # Version 0.4.2 (2015-01-29)
+
 -   Fix sorting bug when saving media on a model
 
 

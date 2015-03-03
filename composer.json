@@ -24,7 +24,7 @@
     "repositories": [
         {
             "type": "composer",
-            "url": "http://www.laravel-packages.zobzob.co.uk"
+            "url": "http://laravel-packages.staging.bozboz.co.uk"
         }
     ],
 	"extra": {

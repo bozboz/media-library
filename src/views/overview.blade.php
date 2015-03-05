@@ -27,5 +27,6 @@
 		</li>
 	@endforeach
 	</ul>
+	{{ $report->getFooter() }}
 	@include('admin::partials.new')
 @stop
